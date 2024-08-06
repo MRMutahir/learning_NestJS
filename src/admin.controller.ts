@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 
 @Controller('/admin')
 export class AdminController {
@@ -15,6 +15,15 @@ export class AdminController {
     console.log('query', query);
     return {
       data: 'Well come my server query',
+    };
+  }
+
+  @Post('/video')
+  getVideoData(@Body() body: any) {
+    console.log('body', body);
+    return {
+      email: body.email,
+      password: body.password,
     };
   }
 }
