@@ -1,15 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UsersController } from './users.controller';
-import { UsersStore } from './user.store';
+import { ApplicationStart } from './start.controller';
+import { UserController } from './user.controller';
+import { UserStore } from './user.store';
 
 @Module({
-  // controllers: [UsersController, EducationController, AdminController, IP],
-  controllers: [UsersController],
-  providers: [
-    { provide: 'email', useValue: ['mutahir@gmail.com', '@gmail.com'] },
-  ], // Array value
-  // providers: [{ provide: 'DB_NAME', useValue: 'Muhammad Mutahir' }], // single value
-  // providers: [UsersStore], // short hand
-  // providers: [{ provide: UsersStore, useClass: UsersStore }],
+  controllers: [ApplicationStart, UserController],
+  providers: [UserStore], // No need for useClass if it's a direct class injection
 })
 export class AppModule {}

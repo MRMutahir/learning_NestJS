@@ -1,20 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 
-interface User {
-  name: string;
-  age: string;
-  id: number;
-}
-// eslint-disable-next-line prettier/prettier
-@Injectable()
-export class UsersStore {
-  private user = [
-    // {
-    //   name: 'Muhammad Mutahir',
-    // },
-  ];
+@Injectable({ scope: Scope.DEFAULT })
+export class UserStore {
+  constructor() {
+    console.log('UserStore provider initialized');
+    let obj = {
+      name: ' Muhammad Mutahir',
+      age: 18,
+      location: 'Gulshan Iqbal',
+    };
+    console.log('obj', obj)
+  }
 
-  addUser(user) {
-    this.user.push(user);
+  getProvider() {
+    return 'UserStore provider method called';
   }
 }
